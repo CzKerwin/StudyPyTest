@@ -1,0 +1,138 @@
+class Solution:#first test 68ms
+    def longestCommonPrefix(self, strs):
+        common=''
+        if len(strs)<2:
+            if strs==[]:
+                return ''
+            else:
+                return strs[0]
+        else:
+            for i in range(len(strs)-1):
+                if i==0:
+                    compare = strs[i]
+                else:
+                    compare = common
+                    common=''
+                for j in range(min(len(compare),len(strs[i+1]))):                    
+                    if compare[j] == strs[i+1][j]:
+                        common = common + compare[j]
+                    else:
+                        break
+            return common
+      
+class Solution:#second test 68ms
+    def longestCommonPrefix(self, strs):
+        if strs==[]:
+            return ''
+        else:
+            compare=strs[0]
+            for i in range(1,len(strs)):
+                common=''
+                for j in range(min(len(compare),len(strs[i]))):                    
+                    if compare[j] == strs[i][j]:
+                        common = common + compare[j]
+                    else:
+                        break
+                compare = common     
+            return compare
+class Solution:#third test 64ms
+    def longestCommonPrefix(self, strs):
+        if strs==[]:
+            return ''
+        else:
+            compare=strs[0]
+            for str_i in strs[1:]:
+                common=''
+                for j in range(min(len(compare),len(str_i))):                    
+                    if compare[j] == str_i[j]:
+                        common = common + compare[j]
+                    else:
+                        break
+                compare = common     
+            return compare
+            
+ class Solution:#4th test 60ms
+    def longestCommonPrefix(self, strs):
+        if strs==[]:
+            return ''
+        else:
+            common=strs[0]
+            for str_i in strs[1:]:
+                i=0
+                for j in range(min(len(common),len(str_i))):                    
+                    if common[j] == str_i[j]:
+                        i=i+1                        
+                    else:
+                        break
+                common = common[:i]   
+            return common
+            
+class Solution:#5th test 56ms
+    def longestCommonPrefix(self, strs):
+        if strs==[]:
+            return ''
+        else:
+            common = min(strs)
+            for str_i in strs:
+                i=0
+                for j in range(len(common)):                    
+                    if common[j] == str_i[j]:
+                        i=i+1                        
+                    else:
+                        break
+                common = common[:i]   
+            return common
+            
+class Solution:#6th test 52ms 
+    def longestCommonPrefix(self, strs):
+        if strs==[]:
+            return ''
+        else:
+            common = min(strs)
+            for str_i in strs:
+                if str_i == common:
+                    continue
+                i=0
+                for j in range(len(common)):                    
+                    if common[j] == str_i[j]:
+                        i=i+1                        
+                    else:
+                        break
+                common = common[:i]   
+            return common
+            
+class Solution:#standard solution 48ms
+    def longestCommonPrefix(self, strs):
+        if not strs:
+            return ""
+        else:
+            minSubStr = min(strs) #寻找长度最小的子串
+            for subStr in strs:
+                if subStr == minSubStr:
+                    continue
+                for i in range(len(minSubStr)):#从头开始匹配
+                    if subStr[i] == minSubStr[i]:
+                        continue
+                    elif i==0:
+                        return ''
+                    else:
+                        minSubStr = minSubStr[:i]
+                        break
+            return minSubStr               
+             
+class Solution:#7th test 48ms perfect
+    def longestCommonPrefix(self, strs):
+        if strs==[]:
+            return ''
+        else:
+            common = min(strs)
+            for str_i in strs:
+                if str_i == common:
+                    continue
+                for j in range(len(common)):                    
+                    if common[j] == str_i[j]:
+                        continue                     
+                    else:
+                        common = common[:j] 
+                        break  
+            return common   
