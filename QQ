@@ -1,0 +1,21 @@
+class Solution:
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        dic={'(':")",'[':"]",'{':"}"}
+        j=0
+        while j < len(s):
+            t=s[j:].find(dic.get(s[j]))
+            half=(t+1)/2
+            if half != int(half): 
+                return False
+            for i in range(int(half)):
+                if s[-i-1]==dic.get(s[i]):
+                    continue
+                else:
+                    return False
+            j=t+1    
+        return True
+        
