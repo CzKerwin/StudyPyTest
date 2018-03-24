@@ -1,4 +1,4 @@
-class Solution:#first test
+class Solution:#first test 204ms
     def romanToInt(self, s):
         dic={'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
         num=[]
@@ -15,7 +15,7 @@ class Solution:#first test
         else:
             return val
 						
-class Solution:#second test
+class Solution:#second test 196ms
     def romanToInt(self, s):
         dic={'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
         if len(s)==1 :
@@ -30,3 +30,19 @@ class Solution:#second test
                 else:
                     val += num2
             return val
+
+class Solution:#third test 196ms
+    def romanToInt(self, s):
+        dic={'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
+        if len(s)==1 :
+            return dic[s]
+        else:
+            val=0
+            for i in range(len(s)-1):
+                num1 = dic[s[i]]
+                num2 = dic[s[i+1]]
+                if num1 < num2:
+                    val -= num1
+                else:
+                    val += num1
+            return val + dic[s[-1]]
