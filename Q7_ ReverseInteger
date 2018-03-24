@@ -1,0 +1,9 @@
+class Solution:  
+    def reverse(self, x):
+        a = x>0 and 1 or -1
+        x=abs(x)
+        X=0
+        while x!=0:
+            X=10*X+x%10
+            x=int(x/10)
+        return X*a*(abs(X)<=0x7fffffff)
