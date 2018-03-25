@@ -1,0 +1,79 @@
+class Solution:#first test out of time
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        dic={'(':")",'[':"]",'{':"}"}
+        j=0
+        while j < len(s):
+            t=s[j:].find(dic.get(s[j]))
+            half=(t+1)/2
+            if half != int(half): 
+                return False
+            for i in range(int(half)):
+                if s[-i-1]==dic.get(s[i]):
+                    continue
+                else:
+                    return False
+            j=t+1    
+        return True
+        
+class Solution:#second test 40 ms++
+    def isValid(self, s):
+        dic={'(':")",'[':"]",'{':"}"}
+        num_end=[]
+        strs = ''
+        for i,j in enumerate(s):
+            if j in dic:
+                strs = strs+j
+                num_end.append(i)
+            else:
+                if num_end==[] : return False
+                if dic.get(strs[num_end[-1]]):
+                    strs = strs + dic[strs[num_end[-1]]]
+                    num_end.pop()
+                else: return False
+        return strs==s and num_end==[]
+
+class Solution:#third test 40ms+
+    def isValid(self, s):
+        dic={'(':")",'[':"]",'{':"}"}
+        strs = []
+        for i in s:
+            if i in dic:
+                strs.append(i)
+            else:
+                if strs!=[] and i==(dic[strs[-1]]):
+                    strs.pop()
+                else: return False
+        return strs==[]
+        
+from collections import deque
+class Solution:#standard solution 
+    def isValid(self, s):
+        deq = deque()
+        pair = {'(': ')', '[': ']', '{': '}'}
+        for letter in s:
+            if letter == '(' or letter == '[' or letter == '{':
+                deq.append(letter)
+            else:
+                if len(deq) > 0 and letter == pair[deq[-1]]:
+                    deq.pop()
+                else:
+                    return False
+        return len(deq) == 0
+        
+from collections import deque
+class Solution:#4th test 36ms+
+    def isValid(self, s):
+        dic={'(':")",'[':"]",'{':"}"}
+        strs = deque()
+        for i in s:
+            if i in dic:
+                strs.append(i)
+            else:
+                if len(strs)>0 and i==dic[strs[-1]]:
+                    strs.pop()
+                else: return False
+        return len(strs)==0                                                                                                                            
