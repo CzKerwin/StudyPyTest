@@ -1,0 +1,23 @@
+class Solution: #first test
+    def countAndSay(self, n):
+        """
+        :type n: int
+        :rtype: str
+        """
+        def countOneStep(self,strs):
+            num=1
+            strsReturn=''
+            for i in range(len(strs)-1):
+                if strs[i]==strs[i+1]:
+                    num+=1
+                else:
+                    strsReturn=strsReturn+str(num)+str(strs[i])
+                    num=1
+            return strsReturn+str(num)+str(strs[-1])
+        strs='1'
+        for i in range(n-1):
+            strs=countOneStep(self,strs)
+        return strs
+        
+        
+        
