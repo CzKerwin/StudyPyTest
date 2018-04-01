@@ -1,0 +1,65 @@
+class Solution:# first test out of time
+    def maxSubArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        sumMax=nums[0]
+        while nums!=[]:
+            for i in range(len(nums)):
+                if sumMax < sum(nums[i:]):
+                    sumMax=sum(nums[i:])
+            nums.pop()      
+        return sumMax
+
+class Solution:#second test......stupied
+    def maxSubArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        #if len(nums)==1:return nums[0]
+        if len(nums)<=2:
+            sumMax=nums[0]
+            while nums!=[]:
+                for i in range(len(nums)):
+                    if sumMax < sum(nums[i:]):
+                        sumMax=sum(nums[i:])
+                nums.pop()      
+            return sumMax
+        x=nums[0]+nums[1]
+        numsSum=[nums[0],x]
+        top=[]
+        for i in range(2,len(nums)):
+            a=x
+            x=x+nums[i]
+            numsSum.append(x)
+            if x<=numsSum[-2] and numsSum[-2]>numsSum[-3]:
+                top.append(i-1)
+        if nums[-1]>0: top.append(len(nums)-1)
+        if nums[0]>0: 
+            top.insert(0,0)
+            MaxSum,b = nums[0],0
+        else:
+            if top==[]: 
+                return max(nums)
+            b=min(numsSum[:top[0]])
+            MaxSum = numsSum[top[0]]-b
+        for i in range(len(top)-1):
+            b=min(min(numsSum[top[i]:top[i+1]]),b)
+            c=numsSum[top[i+1]]-b
+            if MaxSum < c:
+                MaxSum = c
+        return MaxSum
+        
+class Solution:#standard solution
+    def maxSubArray(self, nums):
+        sum = 0
+        max = nums[0]
+        for index in range(len(nums)):
+            if sum < 0:
+                sum = 0
+            sum += nums[index]
+            if sum > max:
+                max = sum
+        return max
