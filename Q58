@@ -1,0 +1,24 @@
+class Solution:#first test
+    def lengthOfLastWord(self, s):
+        words=''
+        for i in range(len(s)):
+            if s[(-1-i)]!=' ':
+                words = words + s[(-1-i)]
+            else:
+                if words!='':
+                    return len(words)
+        if words!='':
+            return len(words)
+        return 0
+        
+class Solution:#standard solution
+    def lengthOfLastWord(self, s):
+        str = ''
+        count = 0
+        for i in s[::-1]:
+            if str != '' and i==' ':
+                return count
+            if i != ' ':
+                count = count+ 1
+                str = str + i
+        return count
