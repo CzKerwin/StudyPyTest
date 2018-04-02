@@ -1,0 +1,45 @@
+class Solution:#1
+    def addBinary(self, a, b):
+        """
+        :type a: str
+        :type b: str
+        :rtype: str
+        """
+        grow=0
+        answer=''
+        lena,lenb=len(a),len(b)
+        if lena<lenb:
+            b,a=a,b
+            lena,lenb=lenb,lena
+        for i in range(lenb):
+            num=int(a[-1-i])+int(b[-1-i])+grow
+            if num == 2:
+                num,grow=0,1
+            elif num==3:
+                num,grow=1,1
+            else:
+                grow=0
+            answer=answer+str(num)
+        for i in range(lenb,lena):
+            num=int(a[-1-i])+grow
+            if num == 2:
+                num,grow=0,1
+            elif num==3:
+                num,grow=1,1
+            else:
+                grow=0
+            answer=answer+str(num)
+        if grow==1:
+            answer=answer+str(1)
+        return answer[::-1]
+        
+class Solution:#solution
+    def addBinary(self, a, b):
+        """
+        :type a: str
+        :type b: str
+        :rtype: str
+        """
+        a = int(a,2);
+        b = int(b,2);
+        return str(bin(a+b))[2:];
