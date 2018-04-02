@@ -1,0 +1,18 @@
+class Solution:
+    def mySqrt(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """        
+        if x<2: return x
+        shangjie,xiajie=x,0
+        while shangjie-xiajie > 1:
+            zhongdian=int(xiajie+(shangjie-xiajie)/2)
+            if zhongdian*zhongdian>x:
+                shangjie=zhongdian
+            elif zhongdian*zhongdian==x:
+                return zhongdian
+            else:
+                xiajie=zhongdian
+        return xiajie
+        
